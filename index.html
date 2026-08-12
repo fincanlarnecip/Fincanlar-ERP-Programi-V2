@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Fincanlar ERP</title>
+<link rel="icon" type="image/png" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#2563eb">
+<style>
+:root{
+  --bg:#f7f8fa; --bg2:#fff; --bg3:#f0f2f5;
+  --border:#e0e3e8; --text:#1a1d23; --text2:#5a6070; --text3:#9099a8;
+  --blue:#2563eb; --blue-l:#dbeafe;
+  --r:10px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── ÜST ÇUBUK ── */
+.topbar{display:flex;align-items:center;gap:10px;padding:9px 16px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;cursor:pointer;user-select:none}
+.brand img{width:26px;height:26px}
+.searchwrap{flex:1;max-width:480px;position:relative;margin-left:8px}
+.searchwrap input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--border);border-radius:20px;background:var(--bg3);font-size:14px;color:var(--text);outline:none}
+.searchwrap input:focus{border-color:var(--blue);background:var(--bg2)}
+.searchwrap .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;pointer-events:none}
+.homebtn{margin-left:auto;padding:6px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;display:none}
+.homebtn.show{display:inline-block}
+
+/* ── ANA ALAN ── */
+.main{flex:1;overflow:auto;position:relative}
+
+/* Karşılama ekranı — modül ikonları */
+#home{max-width:900px;margin:0 auto;padding:40px 20px}
+#home h1{font-size:20px;margin:0 0 4px;text-align:center}
+#home p.sub{color:var(--text3);text-align:center;margin:0 0 32px;font-size:13px}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.modtile{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px 14px;text-align:center;cursor:pointer;transition:transform .12s,box-shadow .12s;user-select:none}
+.modtile:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.modtile .ic{font-size:30px;margin-bottom:10px;display:block}
+.modtile .lbl{font-weight:700;font-size:13px}
+.modtile .desc{color:var(--text3);font-size:10px;margin-top:3px}
+
+/* Modül içerik alanı */
+.modview{position:absolute;inset:0;display:none;flex-direction:column}
+.modview.active{display:flex}
+.modview iframe{flex:1;border:none;width:100%}
+.placeholder{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text3);gap:8px;padding:20px;text-align:center}
+.placeholder .ic{font-size:44px;opacity:.5}
+.placeholder h2{color:var(--text2);font-size:16px;margin:0}
+.placeholder p{font-size:12px;max-width:320px;margin:0}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand" onclick="gitAnaSayfa()">
+    <img src="./icon-192.png" alt="">
+    <span>Fincanlar ERP</span>
+  </div>
+  <div class="searchwrap">
+    <span class="si">🔍</span>
+    <input id="global-ara" placeholder="Ürün ara (kod, isim, ebat)..." oninput="globalAraDegisti(this.value)">
+  </div>
+  <button class="homebtn" id="home-btn" onclick="gitAnaSayfa()">← Ana Sayfa</button>
+</div>
+
+<div class="main">
+  <div id="home">
+    <h1>Hoş geldin</h1>
+    <p class="sub">Bir modül seç, ya da yukarıdan ürün ara</p>
+    <div class="modgrid" id="modgrid"></div>
+  </div>
+
+  <!-- Stok modülü: mevcut canlı stok panelini gömüyoruz — kod tekrarı yok, her zaman güncel -->
+  <div class="modview" id="mod-stok">
+    <iframe id="stok-iframe" src="https://fincanlarnecip.github.io/stok-panel/" title="Stok Paneli"></iframe>
+  </div>
+
+  <div class="modview" id="mod-cari"><div class="placeholder"><span class="ic">👥</span><h2>Cari</h2><p>Müşteri/tedarikçi hesapları yakında burada olacak.</p></div></div>
+  <div class="modview" id="mod-tahsilat"><div class="placeholder"><span class="ic">💰</span><h2>Tahsilat</h2><p>Yakında burada olacak.</p></div></div>
+  <div class="modview" id="mod-odeme"><div class="placeholder"><span class="ic">💳</span><h2>Ödeme</h2><p>Yakında burada olacak.</p></div></div>
+  <div class="modview" id="mod-alis"><div class="placeholder"><span class="ic">📥</span><h2>Alış</h2><p>Yakında burada olacak.</p></div></div>
+  <div class="modview" id="mod-satis"><div class="placeholder"><span class="ic">📤</span><h2>Satış</h2><p>Yakında burada olacak.</p></div></div>
+  <div class="modview" id="mod-finans"><div class="placeholder"><span class="ic">📊</span><h2>Finans</h2><p>Yakında burada olacak.</p></div></div>
+  <div class="modview" id="mod-rapor"><div class="placeholder"><span class="ic">📈</span><h2>Rapor</h2><p>Yakında burada olacak.</p></div></div>
+</div>
+
+<script>
+const MODULLER = [
+  {id:"stok",     ic:"📦", lbl:"Stok",      desc:"Stok listesi ve takip"},
+  {id:"cari",     ic:"👥", lbl:"Cari",      desc:"Müşteri / tedarikçi"},
+  {id:"tahsilat", ic:"💰", lbl:"Tahsilat",  desc:"Gelen ödemeler"},
+  {id:"odeme",    ic:"💳", lbl:"Ödeme",     desc:"Giden ödemeler"},
+  {id:"alis",     ic:"📥", lbl:"Alış",      desc:"Satın alma"},
+  {id:"satis",    ic:"📤", lbl:"Satış",     desc:"Satış işlemleri"},
+  {id:"finans",   ic:"📊", lbl:"Finans",    desc:"Genel finans durumu"},
+  {id:"rapor",    ic:"📈", lbl:"Rapor",     desc:"Raporlar"},
+];
+
+document.getElementById("modgrid").innerHTML = MODULLER.map(m=>`
+  <div class="modtile" onclick="modulAc('${m.id}')">
+    <span class="ic">${m.ic}</span>
+    <div class="lbl">${m.lbl}</div>
+    <div class="desc">${m.desc}</div>
+  </div>`).join("");
+
+function modulAc(id){
+  document.getElementById("home").style.display = "none";
+  document.querySelectorAll(".modview").forEach(v=>v.classList.remove("active"));
+  const el = document.getElementById("mod-"+id);
+  if(el) el.classList.add("active");
+  document.getElementById("home-btn").classList.add("show");
+}
+
+function gitAnaSayfa(){
+  document.querySelectorAll(".modview").forEach(v=>v.classList.remove("active"));
+  document.getElementById("home").style.display = "block";
+  document.getElementById("home-btn").classList.remove("show");
+  document.getElementById("global-ara").value = "";
+}
+
+// Arama kutusuna bir şey yazılınca Stok modülüne geçilir (liste orada, "şimdiki yerinde" açılır).
+let _aramaZamanlayici = null;
+function globalAraDegisti(deger){
+  clearTimeout(_aramaZamanlayici);
+  if(!deger.trim()) return;
+  _aramaZamanlayici = setTimeout(()=>{
+    modulAc("stok");
+    // Not: arama terimini otomatik stok paneline aktarmak (iframe postMessage) sonraki adımda eklenebilir.
+  }, 250);
+}
+</script>
+
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>{
+    navigator.serviceWorker.register("./sw.js").catch(e=>console.warn("SW kayıt hatası:",e));
+  });
+}
+</script>
+</body>
+</html>
