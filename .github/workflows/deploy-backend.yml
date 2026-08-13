@@ -10,6 +10,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -25,14 +27,23 @@ jobs:
       - name: Restore clasp credentials
         run: echo '${{ secrets.CLASPRC_JSON }}' > ~/.clasprc.json
 
-      - name: Push to Apps Script
+      - name: Push to Apps Script (hata olsa da devam et, logu kaydet)
         working-directory: backend
-        run: clasp push --force
+        continue-on-error: true
+        run: clasp push --force > ../deploy-log.txt 2>&1 || true
 
-      - name: Deploy (ilk çalıştırma - dağıtım ID'si burada oluşacak)
+      - name: Deploy (hata olsa da devam et, logu ekle)
         working-directory: backend
+        continue-on-error: true
         run: |
-          clasp deploy --description "Auto-deploy from GitHub $(date +'%Y-%m-%d %H:%M')"
-          echo "===DEPLOYMENTS-LIST-START==="
-          clasp deployments
-          echo "===DEPLOYMENTS-LIST-END==="
+          clasp deploy --description "Auto-deploy from GitHub $(date +'%Y-%m-%d %H:%M')" >> ../deploy-log.txt 2>&1 || true
+          echo "===DEPLOYMENTS===" >> ../deploy-log.txt
+          clasp deployments >> ../deploy-log.txt 2>&1 || true
+
+      - name: Log dosyasını repoya kaydet (teşhis için)
+        run: |
+          git config user.name "deploy-bot"
+          git config user.email "deploy-bot@users.noreply.github.com"
+          git add deploy-log.txt
+          git commit -m "deploy log" || echo "değişiklik yok"
+          git push
