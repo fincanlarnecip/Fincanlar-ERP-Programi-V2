@@ -243,3 +243,4 @@ function cariHareketSil(body) {
   return { ok: false, hata: "Hareket bulunamadı" };
 }
 // ilk deploy tetikleme Thu Aug 13 07:50:13 UTC 2026
+// tekrar tetikleme Thu Aug 13 08:44:23 UTC 2026
