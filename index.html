@@ -51,6 +51,84 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,san
 .placeholder .ic{font-size:44px;opacity:.5}
 .placeholder h2{color:var(--text2);font-size:16px;margin:0}
 .placeholder p{font-size:12px;max-width:320px;margin:0}
+
+/* ── CARİ MODÜLÜ ── */
+#mod-cari{flex-direction:row}
+.cari-list-panel{width:320px;min-width:260px;border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg2)}
+.cari-list-head{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center}
+.cari-list-head input{flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg3);font-size:13px;outline:none}
+.cari-list-head input:focus{border-color:var(--blue);background:var(--bg2)}
+.cari-add-btn{width:32px;height:32px;border-radius:8px;border:none;background:var(--blue);color:#fff;font-size:18px;line-height:1;cursor:pointer;flex-shrink:0}
+.cari-items{flex:1;overflow:auto}
+.cari-item{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.cari-item:hover{background:var(--bg3)}
+.cari-item.sel{background:var(--blue-l)}
+.cari-item-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cari-item-ad{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cari-item-tip{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.03em}
+.cari-item-bakiye{font-size:12px;font-weight:700;white-space:nowrap}
+.bakiye-pos{color:#dc2626}
+.bakiye-neg{color:#16a34a}
+.bakiye-zero{color:var(--text3)}
+.cari-empty{padding:30px 16px;text-align:center;color:var(--text3);font-size:12px}
+
+.cari-detail-panel{flex:1;overflow:auto;padding:20px 24px}
+.cari-detail-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text3);gap:6px}
+.cari-detail-empty .ic{font-size:40px;opacity:.4}
+
+.cari-detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.cari-detail-head h2{margin:0 0 3px;font-size:19px}
+.cari-detail-head .tip-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;background:var(--bg3);color:var(--text2);text-transform:uppercase;letter-spacing:.03em}
+.cari-bakiye-box{text-align:right}
+.cari-bakiye-box .num{font-size:22px;font-weight:800}
+.cari-bakiye-box .lbl{font-size:10px;color:var(--text3);text-transform:uppercase}
+
+.cari-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.cari-info-item{background:var(--bg3);border-radius:8px;padding:8px 12px}
+.cari-info-item .k{font-size:9px;color:var(--text3);text-transform:uppercase;margin-bottom:2px}
+.cari-info-item .v{font-size:13px;font-weight:500;word-break:break-word}
+
+.btnrow{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.btn{padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);font-size:12px;cursor:pointer;color:var(--text)}
+.btn:hover{background:var(--bg3)}
+.btn-primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn-primary:hover{opacity:.9;background:var(--blue)}
+.btn-danger{color:#dc2626;border-color:#fecaca}
+.btn-danger:hover{background:#fef2f2}
+
+.hareket-form{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;background:var(--bg3);border-radius:10px;padding:12px;margin-bottom:16px}
+.hareket-form .fld{display:flex;flex-direction:column;gap:3px}
+.hareket-form label{font-size:9px;color:var(--text3);text-transform:uppercase}
+.hareket-form input,.hareket-form select{padding:7px 9px;border:1px solid var(--border);border-radius:7px;font-size:13px;background:var(--bg2);outline:none}
+.hareket-form input:focus,.hareket-form select:focus{border-color:var(--blue)}
+.hareket-form input[type=text]{width:180px}
+
+table.hareket-tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+table.hareket-tbl th{text-align:left;padding:7px 8px;color:var(--text3);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+table.hareket-tbl td{padding:8px 8px;border-bottom:1px solid var(--border)}
+table.hareket-tbl tr:hover td{background:var(--bg3)}
+.hk-borc{color:#dc2626;font-weight:600}
+.hk-alacak{color:#16a34a;font-weight:600}
+.hk-sil{color:var(--text3);cursor:pointer;font-size:14px}
+.hk-sil:hover{color:#dc2626}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal-box{background:var(--bg2);border-radius:14px;padding:22px;width:100%;max-width:380px;max-height:90vh;overflow:auto}
+.modal-box h3{margin:0 0 14px;font-size:16px}
+.modal-box .fld{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.modal-box label{font-size:10px;color:var(--text3);text-transform:uppercase}
+.modal-box input,.modal-box select,.modal-box textarea{padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:var(--bg3);outline:none;font-family:inherit}
+.modal-box input:focus,.modal-box select:focus,.modal-box textarea:focus{border-color:var(--blue);background:var(--bg2)}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+
+@media (max-width:640px){
+  #mod-cari{flex-direction:column}
+  .cari-list-panel{width:100%;border-right:none;border-bottom:1px solid var(--border)}
+  #mod-cari.detay-acik .cari-list-panel{display:none}
+  #mod-cari:not(.detay-acik) .cari-detail-panel{display:none}
+  .cari-back-btn{display:inline-flex!important}
+}
+.cari-back-btn{display:none;align-items:center;gap:4px;background:none;border:none;color:var(--blue);font-size:13px;cursor:pointer;padding:0 0 12px;font-weight:600}
 </style>
 </head>
 <body>
@@ -79,7 +157,18 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,san
     <iframe id="stok-iframe" src="https://fincanlarnecip.github.io/stok-panel/" title="Stok Paneli"></iframe>
   </div>
 
-  <div class="modview" id="mod-cari"><div class="placeholder"><span class="ic">👥</span><h2>Cari</h2><p>Müşteri/tedarikçi hesapları yakında burada olacak.</p></div></div>
+  <div class="modview" id="mod-cari">
+    <div class="cari-list-panel">
+      <div class="cari-list-head">
+        <input id="cari-ara" placeholder="Cari ara..." oninput="cariAramaFiltrele(this.value)">
+        <button class="cari-add-btn" onclick="cariModalAc()" title="Yeni cari ekle">+</button>
+      </div>
+      <div class="cari-items" id="cari-items"><div class="cari-empty">Yükleniyor...</div></div>
+    </div>
+    <div class="cari-detail-panel" id="cari-detail-panel">
+      <div class="cari-detail-empty"><span class="ic">👥</span><p>Detayları görmek için soldan bir cari seçin</p></div>
+    </div>
+  </div>
   <div class="modview" id="mod-tahsilat"><div class="placeholder"><span class="ic">💰</span><h2>Tahsilat</h2><p>Yakında burada olacak.</p></div></div>
   <div class="modview" id="mod-odeme"><div class="placeholder"><span class="ic">💳</span><h2>Ödeme</h2><p>Yakında burada olacak.</p></div></div>
   <div class="modview" id="mod-alis"><div class="placeholder"><span class="ic">📥</span><h2>Alış</h2><p>Yakında burada olacak.</p></div></div>
@@ -131,6 +220,230 @@ function globalAraDegisti(deger){
     modulAc("stok");
     // Not: arama terimini otomatik stok paneline aktarmak (iframe postMessage) sonraki adımda eklenebilir.
   }, 250);
+}
+
+// Cari modülü ilk kez açıldığında listeyi yükle
+const _origModulAc = modulAc;
+modulAc = function(id){
+  _origModulAc(id);
+  if(id === "cari" && !_cariYuklendi){ cariListesiYukle(); }
+};
+</script>
+
+<!-- ══════════════ CARİ MODÜLÜ ══════════════ -->
+<script>
+const CARI_API = "https://script.google.com/macros/s/AKfycbxlsbGdDPP42Cxm11jkDG7W9XK_SelXOrmKBxhK9PxUtZSXifFERC2yCkrUhamFJaqFPA/exec";
+
+let _cariYuklendi = false;
+let _cariListe = [];
+let _cariSecili = null;
+
+function cariApi(action, params){
+  const body = Object.assign({action: action}, params || {});
+  const url = CARI_API + "?payload=" + encodeURIComponent(JSON.stringify(body));
+  return fetch(url).then(r => r.json());
+}
+
+function paraFormat(n){
+  const sign = n < 0 ? "-" : "";
+  return sign + Math.abs(n).toLocaleString("tr-TR", {minimumFractionDigits:2, maximumFractionDigits:2}) + " ₺";
+}
+
+function bakiyeSinifi(n){
+  if(n > 0) return "bakiye-pos";
+  if(n < 0) return "bakiye-neg";
+  return "bakiye-zero";
+}
+
+function cariListesiYukle(){
+  _cariYuklendi = true;
+  document.getElementById("cari-items").innerHTML = '<div class="cari-empty">Yükleniyor...</div>';
+  cariApi("getCariListesi").then(res=>{
+    if(!res.ok){ document.getElementById("cari-items").innerHTML = '<div class="cari-empty">Hata: '+(res.hata||res.error||"bilinmiyor")+'</div>'; return; }
+    _cariListe = res.cariler.sort((a,b)=>a.ad.localeCompare(b.ad,'tr'));
+    cariListesiCiz(_cariListe);
+  }).catch(err=>{
+    document.getElementById("cari-items").innerHTML = '<div class="cari-empty">Bağlantı hatası: '+err.message+'</div>';
+  });
+}
+
+function cariListesiCiz(liste){
+  const el = document.getElementById("cari-items");
+  if(liste.length === 0){ el.innerHTML = '<div class="cari-empty">Kayıtlı cari yok. "+" ile ekleyin.</div>'; return; }
+  el.innerHTML = liste.map(c=>`
+    <div class="cari-item ${_cariSecili===c.id?'sel':''}" onclick="cariAc('${c.id}')">
+      <div class="cari-item-top">
+        <span class="cari-item-ad">${c.ad}</span>
+        <span class="cari-item-bakiye ${bakiyeSinifi(c.bakiye)}">${paraFormat(c.bakiye)}</span>
+      </div>
+      <span class="cari-item-tip">${c.tip}</span>
+    </div>`).join("");
+}
+
+function cariAramaFiltrele(deger){
+  const d = deger.trim().toLocaleLowerCase('tr');
+  const filtreli = !d ? _cariListe : _cariListe.filter(c =>
+    c.ad.toLocaleLowerCase('tr').includes(d) || (c.telefon||"").includes(d));
+  cariListesiCiz(filtreli);
+}
+
+function cariAc(id){
+  _cariSecili = id;
+  document.getElementById("mod-cari").classList.add("detay-acik");
+  const panel = document.getElementById("cari-detail-panel");
+  panel.innerHTML = '<div class="cari-detail-empty"><span class="ic">⏳</span><p>Yükleniyor...</p></div>';
+  cariApi("getCariDetay", {cariId:id}).then(res=>{
+    if(!res.ok){ panel.innerHTML = '<div class="cari-detail-empty"><span class="ic">⚠️</span><p>'+(res.hata||"Hata")+'</p></div>'; return; }
+    cariDetayCiz(res);
+  }).catch(err=>{
+    panel.innerHTML = '<div class="cari-detail-empty"><span class="ic">⚠️</span><p>Bağlantı hatası: '+err.message+'</p></div>';
+  });
+  cariListesiCiz(_cariListe);
+}
+
+function cariListeyeDon(){
+  document.getElementById("mod-cari").classList.remove("detay-acik");
+}
+
+function cariDetayCiz(res){
+  const c = res.cari, hareketler = res.hareketler, bakiye = res.bakiye;
+  const panel = document.getElementById("cari-detail-panel");
+  const bugun = new Date().toISOString().slice(0,10);
+  panel.innerHTML = `
+    <button class="cari-back-btn" onclick="cariListeyeDon()">← Listeye dön</button>
+    <div class="cari-detail-head">
+      <div>
+        <h2>${c.ad}</h2>
+        <span class="tip-badge">${c.tip}</span>
+      </div>
+      <div class="cari-bakiye-box">
+        <div class="num ${bakiyeSinifi(bakiye)}">${paraFormat(bakiye)}</div>
+        <div class="lbl">${bakiye>0?'Bize borçlu':bakiye<0?'Biz borçluyuz':'Bakiye sıfır'}</div>
+      </div>
+    </div>
+
+    <div class="cari-info-grid">
+      <div class="cari-info-item"><div class="k">Telefon</div><div class="v">${c.telefon||"—"}</div></div>
+      <div class="cari-info-item"><div class="k">Adres</div><div class="v">${c.adres||"—"}</div></div>
+      <div class="cari-info-item"><div class="k">Vergi No</div><div class="v">${c.vergiNo||"—"}</div></div>
+      <div class="cari-info-item"><div class="k">Not</div><div class="v">${c.not||"—"}</div></div>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn" onclick="cariModalAc('${c.id}')">✏️ Düzenle</button>
+      <button class="btn btn-danger" onclick="cariSilOnay('${c.id}')">🗑 Cariyi Sil</button>
+    </div>
+
+    <div class="hareket-form">
+      <div class="fld"><label>Tarih</label><input type="date" id="hk-tarih" value="${bugun}"></div>
+      <div class="fld"><label>Tip</label>
+        <select id="hk-tip"><option value="Borç">Borç (bize borçlandı)</option><option value="Alacak">Alacak (ödeme aldık)</option></select>
+      </div>
+      <div class="fld"><label>Tutar</label><input type="number" id="hk-tutar" step="0.01" min="0" placeholder="0.00" style="width:110px"></div>
+      <div class="fld"><label>Açıklama</label><input type="text" id="hk-aciklama" placeholder="İsteğe bağlı"></div>
+      <button class="btn btn-primary" onclick="hareketEkle('${c.id}')">+ Hareket Ekle</button>
+    </div>
+
+    <table class="hareket-tbl">
+      <thead><tr><th>Tarih</th><th>Tip</th><th>Tutar</th><th>Açıklama</th><th>Bakiye</th><th></th></tr></thead>
+      <tbody>
+        ${hareketler.length===0 ? '<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px">Henüz hareket yok</td></tr>' :
+        hareketler.map(h=>`
+          <tr>
+            <td>${h.tarih}</td>
+            <td class="${h.tip==='Borç'?'hk-borc':'hk-alacak'}">${h.tip}</td>
+            <td>${paraFormat(h.tutar)}</td>
+            <td>${h.aciklama||"—"}</td>
+            <td class="${bakiyeSinifi(h.bakiyeSonrasi)}">${paraFormat(h.bakiyeSonrasi)}</td>
+            <td><span class="hk-sil" onclick="hareketSil('${h.id}','${c.id}')" title="Sil">🗑</span></td>
+          </tr>`).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+function hareketEkle(cariId){
+  const tarih = document.getElementById("hk-tarih").value;
+  const tip = document.getElementById("hk-tip").value;
+  const tutar = parseFloat(document.getElementById("hk-tutar").value);
+  const aciklama = document.getElementById("hk-aciklama").value;
+  if(!tutar || tutar <= 0){ alert("Geçerli bir tutar girin"); return; }
+  cariApi("cariHareketEkle", {cariId, tarih, tip, tutar, aciklama}).then(res=>{
+    if(!res.ok){ alert("Hata: "+(res.hata||"bilinmiyor")); return; }
+    cariAc(cariId);
+    cariListesiYukle();
+  }).catch(err=>alert("Bağlantı hatası: "+err.message));
+}
+
+function hareketSil(hareketId, cariId){
+  if(!confirm("Bu hareketi silmek istediğinize emin misiniz?")) return;
+  cariApi("cariHareketSil", {id:hareketId}).then(res=>{
+    if(!res.ok){ alert("Hata: "+(res.hata||"bilinmiyor")); return; }
+    cariAc(cariId);
+    cariListesiYukle();
+  }).catch(err=>alert("Bağlantı hatası: "+err.message));
+}
+
+function cariSilOnay(id){
+  if(!confirm("Bu cariyi silmek istediğinize emin misiniz? (Hareketi olan cariler silinemez)")) return;
+  cariApi("silCari", {id}).then(res=>{
+    if(!res.ok){ alert("Hata: "+(res.hata||"bilinmiyor")); return; }
+    cariListeyeDon();
+    document.getElementById("cari-detail-panel").innerHTML = '<div class="cari-detail-empty"><span class="ic">👥</span><p>Detayları görmek için soldan bir cari seçin</p></div>';
+    _cariSecili = null;
+    cariListesiYukle();
+  }).catch(err=>alert("Bağlantı hatası: "+err.message));
+}
+
+// ── Yeni/Düzenle modal ──
+function cariModalAc(editId){
+  const duzenle = !!editId;
+  const c = duzenle ? _cariListe.find(x=>x.id===editId) : null;
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.id = "cari-modal-overlay";
+  overlay.onclick = (e)=>{ if(e.target===overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div class="modal-box">
+      <h3>${duzenle?"Cariyi Düzenle":"Yeni Cari Ekle"}</h3>
+      <div class="fld"><label>Ad Soyad / Firma *</label><input id="cm-ad" type="text" value="${c?c.ad:''}"></div>
+      <div class="fld"><label>Tip</label>
+        <select id="cm-tip">
+          <option value="Müşteri" ${(!c||c.tip==='Müşteri')?'selected':''}>Müşteri</option>
+          <option value="Tedarikçi" ${c&&c.tip==='Tedarikçi'?'selected':''}>Tedarikçi</option>
+        </select>
+      </div>
+      <div class="fld"><label>Telefon</label><input id="cm-telefon" type="text" value="${c?c.telefon:''}"></div>
+      <div class="fld"><label>Adres</label><input id="cm-adres" type="text" value="${c?c.adres:''}"></div>
+      <div class="fld"><label>Vergi No</label><input id="cm-vergino" type="text" value="${c?c.vergiNo:''}"></div>
+      <div class="fld"><label>Not</label><textarea id="cm-not" rows="2">${c?c.not:''}</textarea></div>
+      <div class="modal-actions">
+        <button class="btn" onclick="document.getElementById('cari-modal-overlay').remove()">İptal</button>
+        <button class="btn btn-primary" onclick="cariKaydet(${duzenle?`'${editId}'`:'null'})">Kaydet</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  setTimeout(()=>document.getElementById("cm-ad").focus(), 50);
+}
+
+function cariKaydet(id){
+  const ad = document.getElementById("cm-ad").value.trim();
+  if(!ad){ alert("Ad zorunlu"); return; }
+  const body = {
+    id: id || undefined,
+    ad,
+    tip: document.getElementById("cm-tip").value,
+    telefon: document.getElementById("cm-telefon").value,
+    adres: document.getElementById("cm-adres").value,
+    vergiNo: document.getElementById("cm-vergino").value,
+    not: document.getElementById("cm-not").value,
+  };
+  cariApi("saveCari", body).then(res=>{
+    if(!res.ok){ alert("Hata: "+(res.hata||"bilinmiyor")); return; }
+    document.getElementById("cari-modal-overlay").remove();
+    cariListesiYukle();
+    if(id) cariAc(id); else cariAc(res.id);
+  }).catch(err=>alert("Bağlantı hatası: "+err.message));
 }
 </script>
 
