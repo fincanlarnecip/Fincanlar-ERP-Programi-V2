@@ -247,3 +247,5 @@ function cariHareketSil(body) {
 // debug tetikleme Thu Aug 13 08:46:04 UTC 2026
 
 // secret düzeltme sonrası tetikleme Fri Aug 14 14:08:12 UTC 2026
+
+// base64 secret sonrasi tetikleme
