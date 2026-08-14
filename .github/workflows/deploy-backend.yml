@@ -10,8 +10,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -24,29 +22,13 @@ jobs:
       - name: Install clasp
         run: npm install -g @google/clasp
 
-      - name: Restore clasp credentials (base64)
+      - name: Restore clasp credentials
         run: echo "${{ secrets.CLASPRC_JSON_B64 }}" | base64 -d > ~/.clasprc.json
 
-      - name: Validate credentials JSON
-        run: python3 -c "import json; import os; json.load(open(os.path.expanduser('~/.clasprc.json'))); print('CLASPRC JSON GECERLI')"
-
-      - name: Push to Apps Script (hata olsa da devam et, logu kaydet)
+      - name: Push to Apps Script
         working-directory: backend
-        continue-on-error: true
-        run: clasp push --force > ../deploy-log.txt 2>&1 || true
+        run: clasp push --force
 
-      - name: Deploy (hata olsa da devam et, logu ekle)
+      - name: Deploy (sabit deploymentId'ye guncelle)
         working-directory: backend
-        continue-on-error: true
-        run: |
-          clasp deploy --description "Auto-deploy from GitHub $(date +'%Y-%m-%d %H:%M')" >> ../deploy-log.txt 2>&1 || true
-          echo "===DEPLOYMENTS===" >> ../deploy-log.txt
-          clasp deployments >> ../deploy-log.txt 2>&1 || true
-
-      - name: Log dosyasini repoya kaydet (teshis icin)
-        run: |
-          git config user.name "deploy-bot"
-          git config user.email "deploy-bot@users.noreply.github.com"
-          git add deploy-log.txt
-          git commit -m "deploy log" || echo "degisiklik yok"
-          git push
+        run: clasp deploy -i AKfycbxlsbGdDPP42Cxm11jkDG7W9XK_SelXOrmKBxhK9PxUtZSXifFERC2yCkrUhamFJaqFPA --description "Auto-deploy from GitHub $(date +'%Y-%m-%d %H:%M')"
