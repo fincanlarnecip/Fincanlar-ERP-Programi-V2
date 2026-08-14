@@ -1,4 +1,8 @@
-Expected ',' or '}' after property value in JSON at position 619
-Expected ',' or '}' after property value in JSON at position 619
+Pushed 2 files at 2:17:21 PM.
+└─ appsscript.json
+└─ Code.gs
+Deployed AKfycbxlsbGdDPP42Cxm11jkDG7W9XK_SelXOrmKBxhK9PxUtZSXifFERC2yCkrUhamFJaqFPA @1
 ===DEPLOYMENTS===
-Expected ',' or '}' after property value in JSON at position 619
+Found 2 deployments.
+- AKfycbzaJlViV2qPlvuDVfJn0HdibZn-2GtRT4BTRyX9g3xW @HEAD 
+- AKfycbxlsbGdDPP42Cxm11jkDG7W9XK_SelXOrmKBxhK9PxUtZSXifFERC2yCkrUhamFJaqFPA @1 - Auto-deploy from GitHub 2026-08-14 14:17
