@@ -24,8 +24,11 @@ jobs:
       - name: Install clasp
         run: npm install -g @google/clasp
 
-      - name: Restore clasp credentials
-        run: echo '${{ secrets.CLASPRC_JSON }}' > ~/.clasprc.json
+      - name: Restore clasp credentials (base64)
+        run: echo "${{ secrets.CLASPRC_JSON_B64 }}" | base64 -d > ~/.clasprc.json
+
+      - name: Validate credentials JSON
+        run: python3 -c "import json; import os; json.load(open(os.path.expanduser('~/.clasprc.json'))); print('CLASPRC JSON GECERLI')"
 
       - name: Push to Apps Script (hata olsa da devam et, logu kaydet)
         working-directory: backend
@@ -40,10 +43,10 @@ jobs:
           echo "===DEPLOYMENTS===" >> ../deploy-log.txt
           clasp deployments >> ../deploy-log.txt 2>&1 || true
 
-      - name: Log dosyasını repoya kaydet (teşhis için)
+      - name: Log dosyasini repoya kaydet (teshis icin)
         run: |
           git config user.name "deploy-bot"
           git config user.email "deploy-bot@users.noreply.github.com"
           git add deploy-log.txt
-          git commit -m "deploy log" || echo "değişiklik yok"
+          git commit -m "deploy log" || echo "degisiklik yok"
           git push
