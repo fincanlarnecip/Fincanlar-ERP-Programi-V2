@@ -14,12 +14,30 @@ const SHEETS = {
 // ── YARDIMCI FONKSİYONLAR ──
 function getOrCreateSheet(ss, name, headers) {
   let sheet = ss.getSheetByName(name);
-  if (!sheet) {
-    sheet = ss.insertSheet(name);
-    sheet.appendRow(headers);
-    sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#e8edf5");
+  if (sheet) return sheet;
+
+  // Aynı anda birden fazla istek gelip ikisi de "sheet yok" görüp oluşturmaya
+  // çalışabilir (race condition). LockService ile bunu seri hale getiriyoruz,
+  // ayrıca yine de "zaten mevcut" hatası gelirse sayfayı tekrar arayıp
+  // buluyoruz (throw etmek yerine).
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    sheet = ss.getSheetByName(name); // lock alındıktan sonra tekrar kontrol
+    if (sheet) return sheet;
+    try {
+      sheet = ss.insertSheet(name);
+      sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#e8edf5");
+    } catch (e) {
+      // Başka bir eşzamanlı çağrı araya girip sayfayı oluşturmuş olabilir
+      sheet = ss.getSheetByName(name);
+      if (!sheet) throw e; // gerçekten farklı bir hata ise yeniden fırlat
+    }
+    return sheet;
+  } finally {
+    lock.releaseLock();
   }
-  return sheet;
 }
 
 function jsonResponse(data) {
